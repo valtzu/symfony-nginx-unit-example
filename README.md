@@ -1,5 +1,7 @@
 ## Symfony dev setup using NGINX Unit
 
+This is an example of Symfony + NGINX Unit using docker & docker-compose. See also the [official NGINX Unit Symfony example](https://unit.nginx.org/howto/symfony/).
+
 ### Usage
 
 ```
