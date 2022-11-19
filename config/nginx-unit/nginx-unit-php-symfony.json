@@ -1,0 +1,35 @@
+{
+  "access_log": {
+    "path": "/dev/stdout",
+    "format": "{\"channel\":\"http\",\"level\":\"info\",\"request\":{\"method\":\"$method\",\"host\":\"$host\",\"path\":\"$request_uri\",\"ipAddress\":\"$remote_addr\",\"userAgent\":\"$header_user_agent\"},\"response\":{\"bodyLength\":$body_bytes_sent,\"status\":$status}}"
+  },
+  "listeners": {
+    "*:8080": { "pass": "routes" }
+  },
+
+  "routes": [
+    {
+      "match": { "uri": "!~\\.php$" },
+      "action": {
+        "share": "/app/public$uri",
+        "fallback": { "pass": "applications/symfony/index" }
+      }
+    },
+    {
+      "action": { "pass": "applications/symfony/index" }
+    }
+  ],
+
+  "applications": {
+    "symfony": {
+      "type": "php",
+      "options": { "file": "/app/config/nginx-unit/php.ini" },
+      "targets": {
+        "index": {
+          "root": "/app/public/",
+          "script": "index.php"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+/vendor
+/var
+/.git
+/k8s
+/.idea
+/.dockerignore
+.gitignore
+/deploy.sh
+/docker-compose.yml

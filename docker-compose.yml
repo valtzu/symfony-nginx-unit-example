@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  nginx:
+    platform: ${PLATFORM:-linux/amd64}
+    build: .
+    volumes:
+      - .:/app
+      - ./config/nginx-unit/nginx-unit-php-symfony.json:/docker-entrypoint.d/nginx-unit-php-symfony.json
+    environment:
+      APP_ENV: ${APP_ENV:-dev}
+    ports:
+      - "8080:8080"
