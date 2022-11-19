@@ -18,6 +18,10 @@ App should then respond at http://localhost:8080
 
 NGINX Unit configuration file is stored at [config/nginx-unit/nginx-unit-php-symfony.json](config/nginx-unit/nginx-unit-php-symfony.json).
 
+### Routing
+
+URLs that do not end with `.php` are first checked in `public/` directory, and if not found, then forwarded to `public/index.php`. Files ending `.php` are always routed to `index.php` so they are likely to never match any route.
+
 ### Logging
 
 When using `APP_ENV=prod`, all logs except NGINX error logs (mostly startup & shutdown related) are in JSON format.
