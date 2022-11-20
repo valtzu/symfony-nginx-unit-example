@@ -16,7 +16,7 @@ App should then respond at http://localhost:8080
 
 ### NGINX Unit
 
-NGINX Unit configuration file is stored at [config/nginx-unit/nginx-unit-php-symfony.json](config/nginx-unit/nginx-unit-php-symfony.json).
+NGINX Unit configuration file is stored in a single json file at [config/nginx-unit/php-symfony.unit.json](config/nginx-unit/php-symfony.unit.json).
 
 ### Routing
 

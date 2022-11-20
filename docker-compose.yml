@@ -5,7 +5,7 @@ services:
     build: .
     volumes:
       - .:/app
-      - ./config/nginx-unit/nginx-unit-php-symfony.json:/docker-entrypoint.d/nginx-unit-php-symfony.json
+      - ./config/nginx-unit/php-symfony.unit.json:/docker-entrypoint.d/php-symfony.unit.json
     environment:
       APP_ENV: ${APP_ENV:-dev}
     ports:

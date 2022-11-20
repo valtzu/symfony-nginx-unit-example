@@ -9,27 +9,32 @@
 
   "routes": [
     {
-      "match": { "uri": "!~\\.php$" },
+      "match": { "uri": "!*.php" },
       "action": {
         "share": "/app/public$uri",
-        "fallback": { "pass": "applications/symfony/index" }
+        "fallback": { "pass": "applications/symfony" }
       }
     },
     {
-      "action": { "pass": "applications/symfony/index" }
+      "action": { "pass": "applications/symfony" }
     }
   ],
 
   "applications": {
     "symfony": {
       "type": "php",
-      "options": { "file": "/app/config/nginx-unit/php.ini" },
-      "targets": {
-        "index": {
-          "root": "/app/public/",
-          "script": "index.php"
+      "options": {
+        "admin": {
+          "auto_prepend_file": "/app/config/error_handler.php",
+          "variables_order": "EGPCS",
+          "log_errors": "Off",
+          "display_errors": "Off",
+          "display_startup_errors": "Off",
+          "expose_php": "Off"
         }
-      }
+      },
+      "root": "/app/public/",
+      "script": "index.php"
     }
   }
 }

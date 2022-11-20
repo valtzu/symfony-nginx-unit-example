@@ -18,6 +18,6 @@ USER app:app
 COPY --chown=app:app composer.json composer.lock symfony.lock ./
 RUN composer install --no-interaction --no-scripts
 COPY --chown=app:app . .
-COPY ./config/nginx-unit/nginx-unit-php-symfony.json /docker-entrypoint.d/nginx-unit-php-symfony.json
+COPY ./config/nginx-unit/php-symfony.unit.json /docker-entrypoint.d/php-symfony.unit.json
 
 ENV APP_ENV=prod
