@@ -3,7 +3,8 @@ FROM nginx/unit:1.28.0-php8.1
 RUN \
     apt-get update \
     && apt-get install -y unzip libzip-dev libicu-dev \
-    && docker-php-ext-install zip intl
+    && docker-php-ext-install zip intl \
+    && docker-php-ext-enable opcache
 
 RUN useradd app \
     && mkdir -p /app \
