@@ -16,7 +16,7 @@ App should then respond at http://localhost:8080
 
 ### NGINX Unit
 
-NGINX Unit configuration file is stored in a single json file at [config/nginx-unit/php-symfony.unit.json](config/nginx-unit/php-symfony.unit.json).
+NGINX Unit configuration file is stored in a single json file at [config/unit/php-symfony.unit.json](config/unit/php-symfony.unit.json).
 
 ### Routing
 
@@ -28,12 +28,8 @@ When using `APP_ENV=prod`, all logs except NGINX error logs (mostly startup & sh
 
 #### Example:
 
+```bash
+$ docker compose up
+unit-1  | {"channel":"php","level":"notice","message":"The \"Monolog\\Logger\" class is considered final. It may change without further notice as of its next major version. You should not extend it from \"Symfony\\Bridge\\Monolog\\Logger\".","file":"/app/vendor/symfony/error-handler/DebugClassLoader.php:331","request":{"id":null}}
+unit-1  | {"channel":"http","level":"info","request":{"id":"cf84a2f6726ab5a157b86194b81abaab","method":"GET","host":"localhost","path":"/","ipAddress":"172.29.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","duration":0.003},"response":{"bodyLength":82735,"status":200}}
 ```
-nginx_1  | {"channel":"php","level":"notice","message":"The \"Monolog\\Logger\" class is considered final. It may change without further notice as of its next major version. You should not extend it from \"Symfony\\Bridge\\Monolog\\Logger\".","file":"/app/vendor/symfony/error-handler/DebugClassLoader.php:331","request":{"id":null}}
-nginx_1  | {"channel":"http","level":"info","request":{"method":"GET","host":"localhost","path":"/","ipAddress":"172.25.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"},"response":{"bodyLength":1700,"status":200}}
-```
-
-## Things NGINX Unit does not support (as of 2023-08-28)
-
-1. No support for `escape=json` in log format – you can break json by providing user agent that has quotation mark in it. It's possible to use njs for this but then some basic things are not available, like http method 😮
-2. No automatic request id generation – in regular NGINX `$request_id` is always populated, and you can pass that to php-fpm.

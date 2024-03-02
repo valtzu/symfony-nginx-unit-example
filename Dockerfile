@@ -1,4 +1,4 @@
-FROM nginx/unit:1.28.0-php8.1
+FROM unit:1.32.0-php8.2
 
 RUN \
     apt-get update \
@@ -19,6 +19,6 @@ USER app:app
 COPY --chown=app:app composer.json composer.lock symfony.lock ./
 RUN composer install --no-interaction --no-scripts
 COPY --chown=app:app . .
-COPY ./config/nginx-unit/php-symfony.unit.json /docker-entrypoint.d/php-symfony.unit.json
+COPY ./config/unit/php-symfony.unit.json /docker-entrypoint.d/php-symfony.unit.json
 
 ENV APP_ENV=prod
