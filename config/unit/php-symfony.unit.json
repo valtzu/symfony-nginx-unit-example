@@ -24,6 +24,11 @@
   "applications": {
     "symfony": {
       "type": "php",
+      "processes": {
+        "max": 100,
+        "spare": 5,
+        "idle_timeout": 20
+      },
       "options": {
         "admin": {
           "auto_prepend_file": "/app/config/error_handler.php",
