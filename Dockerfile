@@ -1,4 +1,4 @@
-FROM unit:1.32.0-php8.2
+FROM unit:1.33.0-php8.3
 
 RUN \
     apt-get update \
