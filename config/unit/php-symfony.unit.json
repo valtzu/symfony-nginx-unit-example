@@ -2,8 +2,13 @@
   "access_log": {
     "if": "`${uri == '/healthcheck' ? false : true}`",
     "path": "/dev/stdout",
-    "format": "`${JSON.stringify({channel:'http',level:'info',request:{id:vars.request_id,method:vars.method,host:host,path:uri,ipAddress:remoteAddr,userAgent:headers['User-Agent'],duration:Number(vars.request_time)},response:{bodyLength:Number(vars.body_bytes_sent),status:Number(vars.status)}})}\n`"
+    "format": "`${JSON.stringify({channel:'http',level:'info',request:{id:vars.request_id,method:vars.method,host:host,path:uri,ipAddress:remoteAddr,user:auth.getUser(vars),userAgent:headers['User-Agent'],duration:Number(vars.request_time)},response:{bodyLength:Number(vars.body_bytes_sent),status:Number(vars.status)}})}\n`"
   },
+
+  "settings": {
+    "js_module": ["auth"]
+  },
+
   "listeners": {
     "*:8080": { "pass": "routes" }
   },
