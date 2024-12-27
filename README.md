@@ -26,7 +26,7 @@ URLs that do not end with `.php` are first checked in `public/` directory, and i
 
 When using `APP_ENV=prod`, all logs except NGINX error logs (mostly startup & shutdown related) are in JSON format.
 
-Username is parsed from `Authorization` header for `Basic` auth & `Bearer` JWT tokens (`sub` or `clientId`).
+Username is parsed from `Authorization` header for `Basic` auth & `Bearer` JWT tokens (`sub` or `clientId` claim).
 
 #### Example:
 

@@ -19,6 +19,6 @@ USER app:app
 COPY --chown=app:app composer.json composer.lock symfony.lock ./
 RUN composer install --no-interaction --no-scripts
 COPY --chown=app:app . .
-COPY ./config/unit/php-symfony.unit.json /docker-entrypoint.d/php-symfony.unit.json
+COPY ./config/unit/*.* /docker-entrypoint.d/
 
 ENV APP_ENV=prod
